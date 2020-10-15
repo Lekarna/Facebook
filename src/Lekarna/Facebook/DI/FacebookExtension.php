@@ -13,7 +13,10 @@ namespace Lekarna\Facebook\DI;
 use Lekarna\Facebook\Api\CurlClient;
 use Lekarna\Facebook\Configuration;
 use Nette;
+use Nette\Schema\Expect;
+use Nette\Schema\Schema;
 use Nette\Utils\Validators;
+use Nette\DI\Extensions\InjectExtension;
 
 
 
@@ -24,38 +27,33 @@ class FacebookExtension extends Nette\DI\CompilerExtension
 {
 
 	/**
-	 * @var array
+	 * {@inheritdoc}
 	 */
-	public $defaults = [
-		'appId' => NULL,
-		'appSecret' => NULL,
-		'verifyApiCalls' => TRUE,
-		'fileUploadSupport' => FALSE,
-		'trustForwarded' => FALSE,
-		'clearAllWithLogout' => TRUE,
-		'domains' => [],
-		'permissions' => [],
-		'canvasBaseUrl' => NULL,
-		'graphVersion' => '',
-		'curlOptions' => [],
-		'debugger' => '%debugMode%',
-		'configurationClass' => Configuration::class
-	];
-
-
-
-	public function __construct()
+	public function getConfigSchema(): Schema
 	{
-		$this->defaults['curlOptions'] = CurlClient::$defaultCurlOptions;
+		return Expect::array([
+			'appId' => NULL,
+			'appSecret' => NULL,
+			'verifyApiCalls' => TRUE,
+			'fileUploadSupport' => FALSE,
+			'trustForwarded' => FALSE,
+			'clearAllWithLogout' => TRUE,
+			'domains' => [],
+			'permissions' => [],
+			'canvasBaseUrl' => NULL,
+			'graphVersion' => '',
+			'curlOptions' => CurlClient::$defaultCurlOptions,
+			'debugger' => '%debugMode%',
+			'configurationClass' => Configuration::class
+		]);
 	}
-
 
 
 	public function loadConfiguration()
 	{
 		$builder = $this->getContainerBuilder();
 
-		$config = $this->getConfig($this->defaults);
+		$config = $this->getConfig();
 		Validators::assert($config['appId'], 'string', 'Application ID');
 		Validators::assert($config['appSecret'], 'string:32', 'Application secret');
 		Validators::assert($config['fileUploadSupport'], 'bool', 'file upload support');
@@ -74,7 +72,7 @@ class FacebookExtension extends Nette\DI\CompilerExtension
 			->addSetup('$permissions', [$config['permissions']])
 			->addSetup('$canvasBaseUrl', [$config['canvasBaseUrl']])
 			->addSetup('$graphVersion', [$config['graphVersion']])
-			->setInject(FALSE);
+			->addTag(InjectExtension::TAG_INJECT, true);
 
 		$configurator->addSetup('loadConfiguration');
 
@@ -84,7 +82,7 @@ class FacebookExtension extends Nette\DI\CompilerExtension
 
 		$builder->addDefinition($this->prefix('session'))
 			->setClass('Lekarna\Facebook\SessionStorage')
-			->setInject(FALSE);
+			->addTag(InjectExtension::TAG_INJECT, true);
 
 		foreach ($config['curlOptions'] as $option => $value) {
 			if (defined($option)) {
@@ -97,19 +95,19 @@ class FacebookExtension extends Nette\DI\CompilerExtension
 			->setFactory('Lekarna\Facebook\Api\CurlClient')
 			->setClass('Lekarna\Facebook\ApiClient')
 			->addSetup('$service->curlOptions = ?;', [$config['curlOptions']])
-			->setInject(FALSE);
+			->addTag(InjectExtension::TAG_INJECT, true);
 
 		if ($config['debugger']) {
 			$builder->addDefinition($this->prefix('panel'))
 				->setClass('Lekarna\Facebook\Diagnostics\Panel')
-				->setInject(FALSE);
+				->addTag(InjectExtension::TAG_INJECT, true);
 
 			$apiClient->addSetup($this->prefix('@panel') . '::register', ['@self']);
 		}
 
 		$builder->addDefinition($this->prefix('client'))
 			->setClass('Lekarna\Facebook\Facebook')
-			->setInject(FALSE);
+			->addTag(InjectExtension::TAG_INJECT, true);
 
 		if ($config['clearAllWithLogout']) {
 			$builder->getDefinition('user')
