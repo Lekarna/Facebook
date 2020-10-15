@@ -8,10 +8,10 @@
  * For the full copyright and license information, please view the file license.md that was distributed with this source code.
  */
 
-namespace Kdyby\Facebook\Api;
+namespace Lekarna\Facebook\Api;
 
 use Composer\CaBundle\CaBundle;
-use Kdyby\Facebook;
+use Lekarna\Facebook;
 use Nette;
 use Tracy\Debugger;
 use Nette\Http\UrlScript;
@@ -28,7 +28,7 @@ if (!defined('CURLE_SSL_CACERT_BADFILE')) {
  * @author Filip Procházka <filip@prochazka.su>
  *
  * @method onRequest($url, $params)
- * @method onError(\Kdyby\Facebook\Exception $e, array $info)
+ * @method onError(\Lekarna\Facebook\Exception $e, array $info)
  * @method onSuccess(array $result, array $info)
  */
 class CurlClient implements Facebook\ApiClient

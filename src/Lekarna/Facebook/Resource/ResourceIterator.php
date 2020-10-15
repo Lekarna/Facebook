@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the file license.md that was distributed with this source code.
  */
 
-namespace Kdyby\Facebook\Resource;
+namespace Lekarna\Facebook\Resource;
 
 use Iterator;
 use IteratorIterator;
@@ -26,7 +26,7 @@ class ResourceIterator implements Iterator
 	use SmartObject;
 
 	/**
-	 * @var \Kdyby\Facebook\Resource\IResourceLoader
+	 * @var \Lekarna\Facebook\Resource\IResourceLoader
 	 */
 	private $resourceLoader;
 

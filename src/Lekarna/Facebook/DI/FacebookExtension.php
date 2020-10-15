@@ -8,9 +8,10 @@
  * For the full copyright and license information, please view the file license.md that was distributed with this source code.
  */
 
-namespace Kdyby\Facebook\DI;
+namespace Lekarna\Facebook\DI;
 
-use Kdyby\Facebook\Api\CurlClient;
+use Lekarna\Facebook\Api\CurlClient;
+use Lekarna\Facebook\Configuration;
 use Nette;
 use Nette\Utils\Validators;
 
@@ -38,6 +39,7 @@ class FacebookExtension extends Nette\DI\CompilerExtension
 		'graphVersion' => '',
 		'curlOptions' => [],
 		'debugger' => '%debugMode%',
+		'configurationClass' => Configuration::class
 	];
 
 
@@ -64,7 +66,7 @@ class FacebookExtension extends Nette\DI\CompilerExtension
 		Validators::assert($config['canvasBaseUrl'], 'null|url', 'base url for canvas application');
 
 		$configurator = $builder->addDefinition($this->prefix('config'))
-			->setClass('Kdyby\Facebook\Configuration')
+			->setClass($config['configurationClass'])
 			->setArguments([$config['appId'], $config['appSecret']])
 			->addSetup('$verifyApiCalls', [$config['verifyApiCalls']])
 			->addSetup('$fileUploadSupport', [$config['fileUploadSupport']])
@@ -74,12 +76,14 @@ class FacebookExtension extends Nette\DI\CompilerExtension
 			->addSetup('$graphVersion', [$config['graphVersion']])
 			->setInject(FALSE);
 
+		$configurator->addSetup('loadConfiguration');
+
 		if ($config['domains']) {
 			$configurator->addSetup('$service->domains = ? + $service->domains', [$config['domains']]);
 		}
 
 		$builder->addDefinition($this->prefix('session'))
-			->setClass('Kdyby\Facebook\SessionStorage')
+			->setClass('Lekarna\Facebook\SessionStorage')
 			->setInject(FALSE);
 
 		foreach ($config['curlOptions'] as $option => $value) {
@@ -90,21 +94,21 @@ class FacebookExtension extends Nette\DI\CompilerExtension
 		}
 
 		$apiClient = $builder->addDefinition($this->prefix('apiClient'))
-			->setFactory('Kdyby\Facebook\Api\CurlClient')
-			->setClass('Kdyby\Facebook\ApiClient')
+			->setFactory('Lekarna\Facebook\Api\CurlClient')
+			->setClass('Lekarna\Facebook\ApiClient')
 			->addSetup('$service->curlOptions = ?;', [$config['curlOptions']])
 			->setInject(FALSE);
 
 		if ($config['debugger']) {
 			$builder->addDefinition($this->prefix('panel'))
-				->setClass('Kdyby\Facebook\Diagnostics\Panel')
+				->setClass('Lekarna\Facebook\Diagnostics\Panel')
 				->setInject(FALSE);
 
 			$apiClient->addSetup($this->prefix('@panel') . '::register', ['@self']);
 		}
 
 		$builder->addDefinition($this->prefix('client'))
-			->setClass('Kdyby\Facebook\Facebook')
+			->setClass('Lekarna\Facebook\Facebook')
 			->setInject(FALSE);
 
 		if ($config['clearAllWithLogout']) {

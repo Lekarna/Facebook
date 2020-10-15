@@ -1,5 +1,5 @@
 {
-	"name": "kdyby/facebook",
+	"name": "lekarna/facebook",
 	"type": "library",
 	"description": "Facebook PHP SDK with authorization for Nette Framework",
 	"keywords": ["nette", "facebook", "sdk"],
@@ -17,17 +17,17 @@
 		}
 	],
 	"require": {
-		"nette/application": "^2.3",
-		"nette/di": "^2.3",
-		"nette/http": "^2.3",
+		"nette/application": "^3.0",
+		"nette/di": "^3.0",
+		"nette/http": "^3.0",
 		"tracy/tracy": "^2.3",
 		"composer/ca-bundle": "~1.0",
 		"ext-curl": "*",
 		"ext-json": "*"
 	},
 	"require-dev": {
-		"nette/security": "^2.4",
-		"nette/tester": "^1.7",
+		"nette/security": "^3.0",
+		"nette/tester": "^2.3",
 		"phpstan/phpstan": "^0.10.1",
 		"kdyby/fake-session": "@dev",
 		"phpstan/phpstan-nette": "^0.10.0"
@@ -38,10 +38,10 @@
 	},
 	"autoload": {
 		"psr-0": {
-			"Kdyby\\Facebook\\": "src/"
+			"Lekarna\\Facebook\\": "src/"
 		},
 		"classmap": [
-			"src/Kdyby/Facebook/exceptions.php"
+			"src/Lekarna/Facebook/exceptions.php"
 		]
 	},
 	"autoload-dev": {

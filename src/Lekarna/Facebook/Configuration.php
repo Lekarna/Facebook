@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the file license.md that was distributed with this source code.
  */
 
-namespace Kdyby\Facebook;
+namespace Lekarna\Facebook;
 
 use Nette;
 use Nette\Http\UrlScript;
@@ -331,6 +331,11 @@ class Configuration
 		$this->trustForwarded = $trustForwarded;
 	}
 
+
+	public function loadConfiguration(): void
+	{
+
+	}
 
 
 	/**

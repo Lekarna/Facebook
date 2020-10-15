@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the file license.md that was distributed with this source code.
  */
 
-namespace Kdyby\Facebook\Resource;
+namespace Lekarna\Facebook\Resource;
 
 /**
  * @author Martin Štekl <martin.stekl@gmail.com>
@@ -28,7 +28,7 @@ interface IResourceLoader
 	/**
 	 * Resets loader to first data source.
 	 *
-	 * @return \Kdyby\Facebook\Resource\IResourceLoader
+	 * @return \Lekarna\Facebook\Resource\IResourceLoader
 	 */
 	public function reset();
 

@@ -8,9 +8,9 @@
  * For the full copyright and license information, please view the file license.md that was distributed with this source code.
  */
 
-namespace Kdyby\Facebook\Dialog;
+namespace Lekarna\Facebook\Dialog;
 
-use Kdyby\Facebook;
+use Lekarna\Facebook;
 use Nette;
 use Nette\Application\UI\PresenterComponent;
 use Nette\Http\UrlScript;

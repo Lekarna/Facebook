@@ -8,10 +8,10 @@
  * For the full copyright and license information, please view the file license.md that was distributed with this source code.
  */
 
-namespace Kdyby\Facebook\Diagnostics;
+namespace Lekarna\Facebook\Diagnostics;
 
-use Kdyby\Facebook;
-use Kdyby\Facebook\Api\CurlClient;
+use Lekarna\Facebook;
+use Lekarna\Facebook\Api\CurlClient;
 use Nette;
 use Nette\Utils\Html;
 use Tracy\Debugger;
@@ -159,7 +159,7 @@ class Panel implements IBarPanel
 
 
 	/**
-	 * @param \Kdyby\Facebook\Api\CurlClient $client
+	 * @param \Lekarna\Facebook\Api\CurlClient $client
 	 */
 	public function register(CurlClient $client)
 	{

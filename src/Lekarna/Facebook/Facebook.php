@@ -8,9 +8,9 @@
  * For the full copyright and license information, please view the file license.md that was distributed with this source code.
  */
 
-namespace Kdyby\Facebook;
+namespace Lekarna\Facebook;
 
-use Kdyby\Facebook\Api\CurlClient;
+use Lekarna\Facebook\Api\CurlClient;
 use Nette;
 use Nette\Utils\ArrayHash;
 
@@ -23,9 +23,9 @@ use Nette\Utils\ArrayHash;
  * implement the four abstract methods listed at the bottom of
  * the file.
  *
- * @property \Kdyby\Facebook\Configuration $config
- * @property \Kdyby\Facebook\SessionStorage $session
- * @property \Kdyby\Facebook\Profile $profile
+ * @property \Lekarna\Facebook\Configuration $config
+ * @property \Lekarna\Facebook\SessionStorage $session
+ * @property \Lekarna\Facebook\Profile $profile
  *
  * @author Naitik Shah <naitik@facebook.com>
  */
@@ -88,10 +88,10 @@ class Facebook
 	 * @var array
 	 */
 	public static $dialogs = [
-		'login' => 'Kdyby\Facebook\Dialog\LoginDialog',
-		'loginStatus' => 'Kdyby\Facebook\Dialog\LoginStatusDialog',
-		'status' => 'Kdyby\Facebook\Dialog\LoginStatusDialog',
-		'logout' => 'Kdyby\Facebook\Dialog\LogoutDialog',
+		'login' => 'Lekarna\Facebook\Dialog\LoginDialog',
+		'loginStatus' => 'Lekarna\Facebook\Dialog\LoginStatusDialog',
+		'status' => 'Lekarna\Facebook\Dialog\LoginStatusDialog',
+		'logout' => 'Lekarna\Facebook\Dialog\LogoutDialog',
 	];
 
 
@@ -163,7 +163,7 @@ class Facebook
 	 * @param string|array $pathOrParams
 	 * @param string $method
 	 * @param array $params
-	 * @throws \Kdyby\Facebook\FacebookApiException
+	 * @throws \Lekarna\Facebook\FacebookApiException
 	 * @return ArrayHash|bool|NULL The decoded response
 	 */
 	public function api($pathOrParams, $method = NULL, array $params = [])
@@ -186,8 +186,8 @@ class Facebook
 	 * @param string|array $pathOrParams
 	 * @param string $method
 	 * @param array $params
-	 * @throws \Kdyby\Facebook\FacebookApiException
-	 * @return \Kdyby\Facebook\Resource\ResourceLoader
+	 * @throws \Lekarna\Facebook\FacebookApiException
+	 * @return \Lekarna\Facebook\Resource\ResourceLoader
 	 */
 	public function iterate($pathOrParams, $method = NULL, array $params = [])
 	{

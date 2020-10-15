@@ -8,10 +8,10 @@
  * For the full copyright and license information, please view the file license.md that was distributed with this source code.
  */
 
-namespace Kdyby\Facebook\Resource;
+namespace Lekarna\Facebook\Resource;
 
 use IteratorAggregate;
-use Kdyby\Facebook\Facebook;
+use Lekarna\Facebook\Facebook;
 use Nette\SmartObject;
 use Nette\Utils\ArrayHash;
 use Traversable;
@@ -27,7 +27,7 @@ class ResourceLoader implements IteratorAggregate, IResourceLoader
 	use SmartObject;
 
 	/**
-	 * @var \Kdyby\Facebook\Facebook
+	 * @var \Lekarna\Facebook\Facebook
 	 */
 	private $facebook;
 
@@ -56,7 +56,7 @@ class ResourceLoader implements IteratorAggregate, IResourceLoader
 	/**
 	 * Creates new list of Facebook objects.
 	 *
-	 * @param \Kdyby\Facebook\Facebook $facebook
+	 * @param \Lekarna\Facebook\Facebook $facebook
 	 * @param string|array $pathOrParams
 	 * @param string|NULL $method
 	 * @param array $params
@@ -75,7 +75,7 @@ class ResourceLoader implements IteratorAggregate, IResourceLoader
 	 * Sets list of fields which will be selected.
 	 *
 	 * @param string[] $fields
-	 * @return \Kdyby\Facebook\Resource\ResourceLoader
+	 * @return \Lekarna\Facebook\Resource\ResourceLoader
 	 */
 	public function setFields(array $fields = [])
 	{
@@ -96,7 +96,7 @@ class ResourceLoader implements IteratorAggregate, IResourceLoader
 	 * Adds field to list of fields which will be selected.
 	 *
 	 * @param string $field
-	 * @return \Kdyby\Facebook\Resource\ResourceLoader
+	 * @return \Lekarna\Facebook\Resource\ResourceLoader
 	 */
 	public function addField($field)
 	{
@@ -128,7 +128,7 @@ class ResourceLoader implements IteratorAggregate, IResourceLoader
 
 	/**
 	 * @param int|NULL $limit
-	 * @return \Kdyby\Facebook\Resource\ResourceLoader
+	 * @return \Lekarna\Facebook\Resource\ResourceLoader
 	 */
 	public function setLimit($limit = NULL)
 	{
@@ -202,7 +202,7 @@ class ResourceLoader implements IteratorAggregate, IResourceLoader
 	/**
 	 * Resets loader to first data source.
 	 *
-	 * @return \Kdyby\Facebook\Resource\IResourceLoader
+	 * @return \Lekarna\Facebook\Resource\IResourceLoader
 	 */
 	public function reset()
 	{

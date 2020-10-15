@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the file license.md that was distributed with this source code.
  */
 
-namespace Kdyby\Facebook;
+namespace Lekarna\Facebook;
 
 
 
@@ -22,7 +22,7 @@ interface ApiClient
 	 * Invoke the old restserver.php endpoint.
 	 *
 	 * @param array $params Method call object
-	 * @throws \Kdyby\Facebook\FacebookApiException
+	 * @throws \Lekarna\Facebook\FacebookApiException
 	 * @return mixed The decoded response object
 	 */
 	function restServer(array $params);
@@ -33,7 +33,7 @@ interface ApiClient
 	 * @param string $path The path (required)
 	 * @param string $method The http method (default 'GET')
 	 * @param array $params The query/post data
-	 * @throws \Kdyby\Facebook\FacebookApiException
+	 * @throws \Lekarna\Facebook\FacebookApiException
 	 * @return mixed The decoded response object
 	 */
 	function graph($path, $method = 'GET', array $params = []);
@@ -45,7 +45,7 @@ interface ApiClient
 	 * @param array $params The query/post data
 	 *
 	 * @return string The decoded response object
-	 * @throws \Kdyby\Facebook\FacebookApiException
+	 * @throws \Lekarna\Facebook\FacebookApiException
 	 */
 	function oauth($url, array $params);
 
