@@ -68,8 +68,6 @@ abstract class AbstractDialog extends PresenterComponent implements Facebook\Dia
 		$this->facebook = $facebook;
 		$this->config = $facebook->config;
 		$this->currentUrl = $facebook->getCurrentUrl();
-
-		parent::__construct();
 	}
 
 
