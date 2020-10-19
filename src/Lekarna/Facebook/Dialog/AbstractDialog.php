@@ -89,6 +89,7 @@ abstract class AbstractDialog extends Component implements Facebook\Dialog
 	/**
 	 * Facebook get's the url for this handle when redirecting to login dialog.
 	 * It automatically calls the onResponse event.
+	 * @crossOrigin
 	 */
 	public function handleResponse()
 	{
