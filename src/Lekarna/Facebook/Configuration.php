@@ -396,19 +396,17 @@ class Configuration
 
 		} else {
 			$url = new UrlScript($this->domains[$name]);
+			$path = $url->getPath();
 
 			if ($this->graphVersion) {
-				$url->path .= $this->graphVersion . '/';
+				$path .= $this->graphVersion . '/';
 			}
 
-			$url->path .= ltrim($path, '/');
+			$path .= ltrim($path, '/');
+			$url = $url->withPath($path);
 		}
 
-		$url->appendQuery(array_map(function ($param) {
-			return $param instanceof UrlScript ? (string)$param : $param;
-		}, $params));
-
-		return $url;
+		return $url->withQuery($params);
 	}
 
 

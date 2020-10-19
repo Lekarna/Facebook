@@ -11,8 +11,8 @@
 namespace Lekarna\Facebook\Dialog;
 
 use Lekarna\Facebook;
-use Nette;
-use Nette\Application\UI\PresenterComponent;
+use Nette\Application\UI\Component;
+use Nette\Application\UI\Presenter;
 use Nette\Http\UrlScript;
 use Nette\Utils\Html;
 
@@ -24,7 +24,7 @@ use Nette\Utils\Html;
  * @property Facebook\Facebook $facebook
  * @method onResponse(AbstractDialog $dialog)
  */
-abstract class AbstractDialog extends PresenterComponent implements Facebook\Dialog
+abstract class AbstractDialog extends Component implements Facebook\Dialog
 {
 
 	/**
@@ -68,6 +68,10 @@ abstract class AbstractDialog extends PresenterComponent implements Facebook\Dia
 		$this->facebook = $facebook;
 		$this->config = $facebook->config;
 		$this->currentUrl = $facebook->getCurrentUrl();
+
+		$this->monitor(Presenter::class, function () {
+			$this->currentUrl = new UrlScript($this->link('//response!'));
+		});
 	}
 
 
@@ -78,20 +82,6 @@ abstract class AbstractDialog extends PresenterComponent implements Facebook\Dia
 	public function getFacebook()
 	{
 		return $this->facebook;
-	}
-
-
-
-	/**
-	 * @param \Nette\ComponentModel\Container $obj
-	 */
-	protected function attached($obj)
-	{
-		parent::attached($obj);
-
-		if ($obj instanceof Nette\Application\UI\Presenter) {
-			$this->currentUrl = new UrlScript($this->link('//response!'));
-		}
 	}
 
 

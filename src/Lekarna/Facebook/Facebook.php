@@ -569,18 +569,18 @@ class Facebook
 	 */
 	public function getCurrentUrl()
 	{
-		$url = clone $this->httpRequest->getUrl();
+		$url = $this->httpRequest->getUrl();
 		if ($this->config->trustForwarded && isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
-			$url->setHost($_SERVER['HTTP_X_FORWARDED_HOST']);
+			$url->withHost($_SERVER['HTTP_X_FORWARDED_HOST']);
 		}
 
 		if ($this->config->trustForwarded && isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
-			$url->setScheme($_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ? 'https' : 'http');
+			$url->withScheme($_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ? 'https' : 'http');
 		}
 
 		parse_str($url->getQuery(), $query);
 		$query = array_diff_key($query, array_flip($this->config->dropQueryParams));
-		$url->setQuery($query);
+		$url->withQuery($query);
 
 		return $url;
 	}
