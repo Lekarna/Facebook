@@ -273,7 +273,7 @@ class CurlClient implements Facebook\ApiClient
 			unset($params['method']);
 
 			if ($method === 'GET') {
-				$url->appendQuery($params);
+				$url = $url->withQuery(array_merge($url->getQueryParameters(), $params));
 				$params = [];
 			}
 
