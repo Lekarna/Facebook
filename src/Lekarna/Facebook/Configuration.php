@@ -402,8 +402,8 @@ class Configuration
 				$path .= $this->graphVersion . '/';
 			}
 
-			$path .= ltrim($path, '/');
-			$url = $url->withPath($path);
+			$path = ltrim($path, '/');
+			$url = $url->withPath($path . 'dialog/oauth/');
 		}
 
 		return $url->withQuery($params);
