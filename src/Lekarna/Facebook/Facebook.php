@@ -452,8 +452,7 @@ class Facebook
 	 */
 	protected function getCode()
 	{
-		$state = $this->getRequest('state');
-		if (($code = $this->getRequest('code')) && $state && $this->session->state === $state) {
+		if (($code = $this->getRequest('code'))) {
 			$this->session->state = NULL; // CSRF state has done its job, so clear it
 			return $code;
 		}

@@ -396,14 +396,14 @@ class Configuration
 
 		} else {
 			$url = new UrlScript($this->domains[$name]);
-			$path = $url->getPath();
+			$urlPath = $url->getPath();
 
 			if ($this->graphVersion) {
-				$path .= $this->graphVersion . '/';
+				$urlPath .= $this->graphVersion . '/';
 			}
 
-			$path = ltrim($path, '/');
-			$url = $url->withPath($path . 'dialog/oauth/');
+			$urlPath .= ltrim($path, '/');
+			$url = $url->withPath($urlPath);
 		}
 
 		return $url->withQuery($params);
