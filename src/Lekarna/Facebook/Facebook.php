@@ -514,7 +514,7 @@ class Facebook
 				[
 					'client_id' => $this->config->appId,
 					'client_secret' => $this->config->appSecret,
-					'redirect_uri' => $redirectUri,
+					'redirect_uri' => (string) $redirectUri,
 					'code' => $code
 				]
 			);
@@ -579,7 +579,7 @@ class Facebook
 
 		parse_str($url->getQuery(), $query);
 		$query = array_diff_key($query, array_flip($this->config->dropQueryParams));
-		$url->withQuery($query);
+		$url = $url->withQuery($query);
 
 		return $url;
 	}
