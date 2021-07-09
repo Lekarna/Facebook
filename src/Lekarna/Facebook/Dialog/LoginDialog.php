@@ -35,10 +35,10 @@ class LoginDialog extends Facebook\Dialog\AbstractDialog
 	/**
 	 * Facebook get's the url for this handle when redirecting to login dialog.
 	 * It automatically calls the onResponse event.
+	 * @crossOrigin
 	 */
 	public function handleResponse()
 	{
-		sleep(3);
 		$this->facebook->getUser(); // invoke reading of token
 		parent::handleResponse();
 	}
